@@ -33,7 +33,6 @@ class World {
             if (this.character.isColliding(enemy)) {
                 this.character.hit();
                 this.statusbar.setPercentage(this.character.energy);
-                this.character.ouchSound();
             }
         });
     }
@@ -84,16 +83,16 @@ class World {
         });
     }
 
-    addToCanvas(movableObject) {
-        if (movableObject.otherDirection) {
-            this.flipImage(movableObject);
+    addToCanvas(object) {
+        if (object.otherDirection) {
+            this.flipImage(object);
         }
 
-        movableObject.draw(this.ctx);
-        movableObject.drawFrame(this.ctx);
+        object.draw(this.ctx);
+        object.drawFrame(this.ctx);
 
-        if (movableObject.otherDirection) {
-            this.flipImageBack(movableObject);
+        if (object.otherDirection) {
+            this.flipImageBack(object);
         }
     }
 }
