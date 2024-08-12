@@ -3,7 +3,7 @@ class Character extends MovableObject {
     height = 280;
     width = 130;
     y = 55;
-    speed = 10;
+    speed = 8;
     idleTime = 0;
     IMAGES_WALKING = [
         '../assets/img/2_character_pepe/2_walk/W-21.png',
@@ -66,11 +66,13 @@ class Character extends MovableObject {
     walking_sound = new Audio('../assets/audio/walking.mov');
     jumping_sound = new Audio('../assets/audio/jumping.mp3');
     snoring_sound = new Audio('../assets/audio/snoring.mp3');
-    ouch_sounds = [
-        new Audio('../assets/audio/ouch1.mov'),
-        new Audio('../assets/audio/ouch2.mov'),
-        new Audio('../assets/audio/ouch3.mov'),
+    hurt_sounds = [
+        new Audio('../assets/audio/hurt1.mov'),
+        new Audio('../assets/audio/hurt2.mov'),
+        new Audio('../assets/audio/hurt3.mov'),
     ];
+    hurtSoundPlayed = false;
+
     constructor() {
         super();
         this.loadImage('../assets/img/2_character_pepe/2_walk/W-21.png');
@@ -109,11 +111,22 @@ class Character extends MovableObject {
         }
     }
 
-    ouchSound() {
-        let i = Math.floor(Math.random() * 3);
-        this.ouch_sounds[i].volume = 0.5;
-        this.ouch_sounds[i].play();
-    } 
+    hurtSound() {
+        if (!this.hurtSoundPlayed) {
+            let i = Math.floor(Math.random() * 3);
+            this.hurt_sounds[i].volume = 0.5;
+            this.hurt_sounds[i].play();
+            this.hurtSoundPlayed = true;
+        }
+    }
+
+    hurtCharcter() {
+        if (this.isHurt()) {
+            this.playAnimation(this.IMAGES_HURT);
+            this.hurtSound();
+            this.idleTime = 0;
+        }
+    }
 
     animate() {
 
@@ -141,11 +154,6 @@ class Character extends MovableObject {
                 this.playAnimation(this.IMAGES_DEAD);
                 this.idleTime = 0;
             }
-            else if (this.isHurt()) {
-                this.playAnimation(this.IMAGES_HURT);
-                this.ouchSound();
-                this.idleTime = 0;
-            }
             else if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING);
                 this.idleTime = 0;
@@ -154,6 +162,10 @@ class Character extends MovableObject {
                 this.playAnimation(this.IMAGES_WALKING);
                 this.idleTime = 0;
             } 
+            else if (!this.isHurt()) {
+                this.hurtSoundPlayed = false;
+            }
+            this.hurtCharcter();
         }, 50);
         this.idle();
     }

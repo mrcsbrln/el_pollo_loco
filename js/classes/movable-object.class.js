@@ -12,6 +12,12 @@ class MovableObject extends DrawableObject {
             this.y < movableObject.y + movableObject.height
     }
 
+    isCollidingFromAbove(character) {
+        return this.isColliding(character) &&
+               this.y + this.height <= character.y + character.height / 2 &&
+               this.y + this.height > character.y;
+    }
+
     hit() {
         this.energy -= 5;
         if (this.energy < 0) {

@@ -18,7 +18,7 @@ class World {
     }
 
     setWorld() {
-        this.character.world = this;
+        this.character.world = this; //Frage
     }
 
     run() {
@@ -66,7 +66,7 @@ class World {
     }
 
     flipImage(movableObject) {
-        this.ctx.save();
+        this.ctx.save();  //Frage
         this.ctx.translate(movableObject.width, 0);
         this.ctx.scale(-1, 1);
         movableObject.x = movableObject.x * -1

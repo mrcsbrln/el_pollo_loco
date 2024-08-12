@@ -1,0 +1,3 @@
+class Chick extends Chicken {
+    
+}
