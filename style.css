@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'zabras';
-    src: url('./assets/fonts/zabars.ttf') format('woff2'),
+    src: url('assets/fonts/zabars.ttf') format('woff2'),
   }
 
 * {
@@ -16,7 +16,7 @@
     align-items: center;
     flex-direction: column;
     min-height: 100vh;
-    background-image: url('./assets/img/desert.webp');
+    background-image: url('assets/img/desert.webp');
     background-size: cover;
     background-position: center ;
 }
