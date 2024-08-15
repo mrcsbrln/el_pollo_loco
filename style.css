@@ -20,9 +20,9 @@
     align-items: center;
     flex-direction: column;
     min-height: 100vh;
-    background-image: url('assets/img/desert.webp');
-    background-size: cover;
-    background-position: center ;
+    background-image: url('assets/img/el_pollo_retro.png');
+    background-size: 100% 100%;
+    background-position: center;
 }
 
 .overlay {
@@ -36,20 +36,26 @@
 }
 
 h1 {
-    color: #fff;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: #FF9601;
     padding: 32px;
-    font-size: 96px;
+    font-size: 128px;
     font-family: 'zabras';
     letter-spacing: 8px;
-    text-align: center;
     z-index: 2;
 }
 
 .intro-outro-screens {
     background-image: url('assets/img/9_intro_outro_screens/start/startscreen_1.png');
+    border-radius: 4px;
     width: 720px;
     height: 480px;
-    background-size: contain;
+    background-size: 100% 100%;
+    background-position: center;
     background-repeat: no-repeat;
     z-index: 2;
     display: flex;
@@ -82,7 +88,7 @@ canvas {
     display: none;
     background: black;
     display: block;
-    border-radius: 12px;
+    border-radius: 4px;
     z-index: 2;
 }
 
