@@ -18,18 +18,18 @@ class MovableObject extends DrawableObject {
             this.y < movableObject.y + movableObject.height
     }
 
-    // isColliding(movableObject) {
-    //     return this.x + this.width - this.offset.right > movableObject.x + movableObject.offset.left &&
-    //     this.y + this.height - this.offset.bottom > movableObject.y + movableObject.offset.top &&
-    //     this.x + this.offset.left < movableObject.x + movableObject.width - movableObject.offset.right &&
-    //     this.y + this.offset.top < movableObject.y + movableObject.height - movableObject.offset.bottom;       
-    // }
-
-    isCollidingFromAbove(character) {
-        return this.isColliding(character) &&
-               this.y + this.height <= character.y + character.height / 2 &&
-               this.y + this.height > character.y;
+    isColliding(movableObject) {
+        return this.x + this.width - this.offset.right > movableObject.x + movableObject.offset.left &&
+        this.y + this.height - this.offset.bottom > movableObject.y + movableObject.offset.top &&
+        this.x + this.offset.left < movableObject.x + movableObject.width - movableObject.offset.right &&
+        this.y + this.offset.top < movableObject.y + movableObject.height - movableObject.offset.bottom;       
     }
+
+    // isCollidingFromAbove(character) {
+    //     return this.isColliding(character) &&
+    //            this.y + this.height <= character.y + character.height / 2 &&
+    //            this.y + this.height > character.y;
+    // }
 
     hit() {
         this.energy -= 5;

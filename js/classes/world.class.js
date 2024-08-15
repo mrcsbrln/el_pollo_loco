@@ -48,13 +48,13 @@ class World {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToCanvas(this.level.backgroundObjects);
+        this.addObjectsToCanvas(this.level.clouds);
 
         this.ctx.translate(-this.camera_x, 0);
         this.addToCanvas(this.statusbar);
-        this.ctx.translate(this.camera_x, 0)
+        this.ctx.translate(this.camera_x, 0);
 
         this.addToCanvas(this.character);
-        this.addObjectsToCanvas(this.level.clouds);
         this.addObjectsToCanvas(this.level.enemies);
         this.addObjectsToCanvas(this.throwableObjects);
         this.ctx.translate(-this.camera_x, 0);

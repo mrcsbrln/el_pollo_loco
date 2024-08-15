@@ -9,6 +9,10 @@
     box-sizing: border-box;
 }
 
+.d-none {
+    display: none;
+}
+
 .main-container {
     display: flex;
     width: 100%;
@@ -41,7 +45,41 @@ h1 {
     z-index: 2;
 }
 
+.intro-outro-screens {
+    background-image: url('assets/img/9_intro_outro_screens/start/startscreen_1.png');
+    width: 720px;
+    height: 480px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    padding: 32px;
+}
+
+.play-btn {
+    padding: 16px 32px;
+    border-radius: 32px;
+    border-color: #FF9601;
+    background-color: #FEDD03;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.play-btn:hover {
+    background-color: #FF9601;
+    border-color: #FEDD03;
+}
+
+.canvas-div {
+    display: none;
+    z-index: 2;
+}
+
 canvas {
+    display: none;
     background: black;
     display: block;
     border-radius: 12px;
