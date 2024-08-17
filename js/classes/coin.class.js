@@ -11,10 +11,12 @@ class Coin extends DrawableObject {
         super(x, y);
         this.x = x;
         this.y = y;
+        this.loadImage('assets/img/8_coin/coin_1.png');
         this.loadImages(this.IMAGES_COIN);
+        this.animate();
     }
 
-    animateCoin() {
+    animate() {
         setInterval(() => {
             this.playAnimation(this.IMAGES_COIN);
         }, 200);
