@@ -56,6 +56,7 @@ class World {
 
         this.addToCanvas(this.character);
         this.addObjectsToCanvas(this.level.enemies);
+        this.addObjectsToCanvas(this.level.coins);
         this.addObjectsToCanvas(this.throwableObjects);
         this.ctx.translate(-this.camera_x, 0);
 

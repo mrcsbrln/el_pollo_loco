@@ -1,8 +1,9 @@
 class DrawableObject {
-    x = 120;
-    y = 280;
-    height = 150;
-    width = 100;
+
+    x;
+    y;
+    height;
+    width;
     img;
     imageCache = {};
     currentImage = 0;
@@ -13,11 +14,27 @@ class DrawableObject {
     }
 
     loadImages(imgPathArray) {
-        imgPathArray.forEach(path => {
-            let img = new Image();
+        // this.loadImage(imgPathArray[0]);
+
+
+        // imgPathArray.forEach(path => {
+        //     let img = new Image();
+        //     img.src = path;
+        //     this.imageCache[path] = img; //Frage
+        // });
+        // <- das gleiche wie unten drunter
+
+        for (const path of imgPathArray) {
+            const img = new Image();
             img.src = path;
-            this.imageCache[path] = img; //Frage
-        });
+            this.imageCache[path] = img;
+        }
+
+        // this.imageCache = imgPathArray.reduce((acc, cur) => {
+        //     let img = new Image();
+        //     img.src = cur;
+        //     return acc[cur] = img
+        // }, {});
     }
 
     draw(ctx) {
@@ -32,5 +49,12 @@ class DrawableObject {
             ctx.rect(this.x, this.y, this.width, this.height);
             ctx.stroke();
         }
+    }
+
+    playAnimation(images) {
+        let i = this.currentImage % images.length;
+        let path = images[i];
+        this.img = this.imageCache[path];
+        this.currentImage++;
     }
 }

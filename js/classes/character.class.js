@@ -2,6 +2,7 @@ class Character extends MovableObject {
 
     height = 280;
     width = 130;
+    x = 120;
     y = 55;
     offset = {
         top: 120,
@@ -68,7 +69,7 @@ class Character extends MovableObject {
         'assets/img/2_character_pepe/1_idle/long_idle/I-19.png',
         'assets/img/2_character_pepe/1_idle/long_idle/I-20.png',  
     ];
-    world;
+    // world;
     walking_sound = new Audio('assets/audio/walking.mov');
     jumping_sound = new Audio('assets/audio/jumping.mp3');
     snoring_sound = new Audio('assets/audio/snoring.mp3');
@@ -81,7 +82,7 @@ class Character extends MovableObject {
 
     constructor() {
         super();
-        this.loadImage('assets/img/2_character_pepe/2_walk/W-21.png');
+        this.loadImage(this.IMAGES_WALKING[0]);
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMPING);
         this.loadImages(this.IMAGES_HURT);

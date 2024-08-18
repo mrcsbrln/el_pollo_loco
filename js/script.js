@@ -1,4 +1,5 @@
 function startGame() {
+    initLevel();
     init();
     document.getElementById('play-btn').disabled = true;
     document.getElementById('intro-outro-screens').style.display = 'none';
