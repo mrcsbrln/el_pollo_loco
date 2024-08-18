@@ -14,27 +14,11 @@ class DrawableObject {
     }
 
     loadImages(imgPathArray) {
-        // this.loadImage(imgPathArray[0]);
-
-
-        // imgPathArray.forEach(path => {
-        //     let img = new Image();
-        //     img.src = path;
-        //     this.imageCache[path] = img; //Frage
-        // });
-        // <- das gleiche wie unten drunter
-
         for (const path of imgPathArray) {
             const img = new Image();
             img.src = path;
             this.imageCache[path] = img;
         }
-
-        // this.imageCache = imgPathArray.reduce((acc, cur) => {
-        //     let img = new Image();
-        //     img.src = cur;
-        //     return acc[cur] = img
-        // }, {});
     }
 
     draw(ctx) {
