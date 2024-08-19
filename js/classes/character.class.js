@@ -160,6 +160,7 @@ class Character extends MovableObject {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
                 this.idleTime = 0;
+                isDead = true;
             }
             else if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING);
