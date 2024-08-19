@@ -17,8 +17,14 @@ function initLevel() {
         new Cloud('assets/img/5_background/layers/4_clouds/2.png', 2400),
     ];
     let coins = [
-        new Coin(200, 100),
+        new Coin(200, 75),
         new Coin(300, 100),
+        new Coin(400, 75),
+        new Coin(500, 100),
+        new Coin(1200, 75),
+        new Coin(1300, 100),
+        new Coin(1400, 75),
+        new Coin(1500, 100),
     ];
     let backgroundObjects = [
         new BackgroundObject('assets/img/5_background/layers/air.png', -719),

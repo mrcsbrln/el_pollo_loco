@@ -42,7 +42,7 @@ class World {
         this.level.coins.forEach((coin, i) => {
             if (this.character.isColliding(coin)) {
                 this.level.coins.splice(i, 1);
-                coin.playCoinCollectedSound();
+                coin.coin_collected_sound.play();
             }
         })
     }

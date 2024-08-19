@@ -21,10 +21,7 @@ class Coin extends DrawableObject {
         this.loadImage(this.IMAGES_COIN[0]);
         this.loadImages(this.IMAGES_COIN);
         this.animate();
-    }
-
-    playCoinCollectedSound(){
-        coin_collected_sound.play();
+        this.coin_collected_sound.volume = 0.25;
     }
 
     animate() {
