@@ -34,7 +34,7 @@ class World {
             if (this.character.isColliding(enemy)) {
                 if (this.character.isAboveGround()) {
                     enemy.kill();
-                } else {
+                } else if (enemy.dead === false) {
                     this.character.hit();
                     this.statusbar.setPercentage(this.character.energy);
                 }
