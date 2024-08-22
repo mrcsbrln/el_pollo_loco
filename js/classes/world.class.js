@@ -31,12 +31,16 @@ class World {
 
     checkCollisions() {
         this.level.enemies.forEach((enemy, i) => {
-            if (this.character.isColliding(enemy) && this.character.isAboveGround()) {
-                enemy.killChicken();
+            if (this.character.isColliding(enemy)) {
+                if (this.character.isAboveGround()) {
+                    enemy.kill();
+                } else {
+                    this.character.hit();
+                    this.statusbar.setPercentage(this.character.energy);
+                }
+            }
+            if (enemy.splicable === true) {
                 this.level.enemies.splice(i, 1);
-            } if (this.character.isColliding(enemy) && !this.character.isAboveGround()) {
-                this.character.hit();
-                this.statusbar.setPercentage(this.character.energy);
             }
         });
     }

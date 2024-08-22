@@ -17,14 +17,4 @@ class Chick extends Chicken {
         this.speed = 0.15 + Math.random() * 0.5;
         this.animate();
     }
-
-    animate() {
-        setInterval(() => {
-            this.moveLeft();
-        }, 1000 / 60);
-
-        setInterval(() => {
-            this.playAnimation(this.IMAGES_WALKING);
-        }, 200);
-    }  
 }
