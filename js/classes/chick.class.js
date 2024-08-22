@@ -7,7 +7,7 @@ class Chick extends Chicken {
         'assets/img/3_enemies_chicken/chicken_small/1_walk/2_w.png',
         'assets/img/3_enemies_chicken/chicken_small/1_walk/3_w.png',
     ];
-    IMAGE_DEAD = 'assets/img/3_enemies_chicken/chicken_normal/2_dead/dead.png';
+    IMAGE_DEAD = 'assets/img/3_enemies_chicken/chicken_small/2_dead/dead.png';
 
     constructor() {
         super();

@@ -96,17 +96,15 @@ class Character extends MovableObject {
     }
 
     idle() {
-        setInterval(() => {
-            if (this.idleTime >= 10000) {
-                this.playAnimation(this.IMAGES_LONG_IDLE);
-                this.snoring_sound.play();
-            } else {
-                this.playAnimation(this.IMAGES_IDLE);
-                this.snoring_sound.pause();
-                this.snoring_sound.currentTime = 0;
-             }
-            this.idleTime += 250;
-        }, 250);
+        this.playAnimation(this.IMAGES_IDLE);
+        this.snoring_sound.pause();
+        this.snoring_sound.currentTime = 0;
+        this.idleTime += 250;
+    }
+
+    longIdle() {
+        this.playAnimation(this.IMAGES_LONG_IDLE);
+        this.snoring_sound.play();
     }
 
     walkingSound() {
@@ -128,11 +126,9 @@ class Character extends MovableObject {
     }
 
     hurtCharcter() {
-        if (this.isHurt()) {
-            this.playAnimation(this.IMAGES_HURT);
-            this.hurtSound();
-            this.idleTime = 0;
-        }
+        this.playAnimation(this.IMAGES_HURT);
+        this.hurtSound();
+        this.idleTime = 0;
     }
 
     animate() {
@@ -157,25 +153,35 @@ class Character extends MovableObject {
         }, 1000 / 60);
 
         setInterval(() => {
+            if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+                this.playAnimation(this.IMAGES_WALKING);
+                this.idleTime = 0;
+            }
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
                 this.idleTime = 0;
                 isDead = true;
             }
-            else if (this.isAboveGround()) {
+            if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING);
                 this.idleTime = 0;
             } 
-            else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                this.playAnimation(this.IMAGES_WALKING);
-                this.idleTime = 0;
-            } 
-            else if (!this.isHurt()) {
+            if (!this.isHurt()) {
                 this.hurtSoundPlayed = false;
             }
-            this.hurtCharcter();
-        }, 50);
-        this.idle();
+            if (this.isHurt()) {
+                this.hurtCharcter();
+            }
+        },50);
+        
+        setInterval(() => {
+            if (this.idleTime < 10000) {
+                this.idle();
+            }
+            if (this.idleTime >= 10000) {
+                this.longIdle();
+            } 
+        }, 250);
     }
 
     jump() {

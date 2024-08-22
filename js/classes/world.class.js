@@ -30,8 +30,11 @@ class World {
     }
 
     checkCollisions() {
-        this.level.enemies.forEach(enemy => {
-            if (this.character.isColliding(enemy)) {
+        this.level.enemies.forEach((enemy, i) => {
+            if (this.character.isColliding(enemy) && this.character.isAboveGround()) {
+                enemy.killChicken();
+                this.level.enemies.splice(i, 1);
+            } if (this.character.isColliding(enemy) && !this.character.isAboveGround()) {
                 this.character.hit();
                 this.statusbar.setPercentage(this.character.energy);
             }
