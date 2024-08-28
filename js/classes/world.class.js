@@ -5,7 +5,7 @@ class World {
     ctx;
     keyboard;
     camera_x = 0;
-    statusbar = new Statusbar();
+    statusbarHealth = new Statusbar(50, 0);
     throwableObjects = [];
 
     constructor(canvas, keyboard) {
@@ -36,7 +36,7 @@ class World {
                     enemy.kill();
                 } else if (enemy.dead === false) {
                     this.character.hit();
-                    this.statusbar.setPercentage(this.character.energy);
+                    this.statusbarHealth.setPercentage(this.character.energy);
                 }
             }
             if (enemy.splicable === true) {
@@ -68,7 +68,7 @@ class World {
         this.addObjectsToCanvas(this.level.clouds);
 
         this.ctx.translate(-this.camera_x, 0);
-        this.addToCanvas(this.statusbar);
+        this.addToCanvas(this.statusbarHealth);
         this.ctx.translate(this.camera_x, 0);
 
         this.addToCanvas(this.character);
