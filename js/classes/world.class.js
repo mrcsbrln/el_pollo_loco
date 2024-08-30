@@ -5,7 +5,9 @@ class World {
     ctx;
     keyboard;
     camera_x = 0;
-    statusbarHealth = new Statusbar(50, 0);
+    statusbarHealth = new StatusbarHealth();
+    statusbarCoins = new StatusbarCoins();
+    statusbarBottles = new StatusbarBottles();
     throwableObjects = [];
 
     constructor(canvas, keyboard) {
@@ -26,7 +28,7 @@ class World {
             this.checkCollisions();
             this.collectedCoins();
             this.checkThrowObjects();
-        }, 200);
+        }, 50);
     }
 
     checkCollisions() {
@@ -69,6 +71,8 @@ class World {
 
         this.ctx.translate(-this.camera_x, 0);
         this.addToCanvas(this.statusbarHealth);
+        this.addToCanvas(this.statusbarCoins);
+        this.addToCanvas(this.statusbarBottles);
         this.ctx.translate(this.camera_x, 0);
 
         this.addToCanvas(this.character);
