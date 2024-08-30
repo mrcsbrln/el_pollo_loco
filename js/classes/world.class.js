@@ -8,7 +8,7 @@ class World {
     statusbarHealth = new StatusbarHealth();
     statusbarCoins = new StatusbarCoins();
     statusbarBottles = new StatusbarBottles();
-    throwableObjects = [];
+    bottles = [];
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -58,8 +58,9 @@ class World {
 
     checkThrowObjects() {
         if (this.keyboard.D) {
-            let bottle = new ThrowableObject(this.character.x + 100, this.character.y +100);
-            this.throwableObjects.push(bottle);
+            let bottle = new Bottle(this.character.x + 100, this.character.y +100);
+            this.bottles.push(bottle);
+            this.character.idleTime = 0;
         }
     }
 
@@ -78,7 +79,7 @@ class World {
         this.addToCanvas(this.character);
         this.addObjectsToCanvas(this.level.enemies);
         this.addObjectsToCanvas(this.level.coins);
-        this.addObjectsToCanvas(this.throwableObjects);
+        this.addObjectsToCanvas(this.bottles);
         this.ctx.translate(-this.camera_x, 0);
 
         let self = this;

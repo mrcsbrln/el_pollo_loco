@@ -1,6 +1,7 @@
 class StatusbarBottles extends Statusbar {
 
-    y = 110;
+    y = 80;
+    percentage = 0;
     IMAGES = [
         'assets/img/7_statusbars/1_statusbar/3_statusbar_bottle/green/0.png',
         'assets/img/7_statusbars/1_statusbar/3_statusbar_bottle/green/20.png',
@@ -13,6 +14,6 @@ class StatusbarBottles extends Statusbar {
     constructor() {
         super();
         this.loadImages(this.IMAGES);
-        this.setPercentage(100);
+        this.setPercentage(this.percentage);
     }
 }

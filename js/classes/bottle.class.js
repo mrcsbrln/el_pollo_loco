@@ -1,4 +1,4 @@
-class ThrowableObject extends MovableObject {
+class Bottle extends MovableObject {
 
     constructor(x, y) {
         super();
@@ -6,7 +6,7 @@ class ThrowableObject extends MovableObject {
         this.y = y;
         this.height = 60;
         this.width = 50;
-        this.loadImage('assets/img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png');
+        this.loadImage('assets/img/6_salsa_bottle/bottle_rotation/rotation_sequences.gif');
         this.throw();
     }
 

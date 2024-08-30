@@ -1,6 +1,7 @@
 class StatusbarCoins extends Statusbar {
 
-    y = 55;
+    y = 40;
+    percentage = 0;
     IMAGES = [
         'assets/img/7_statusbars/1_statusbar/1_statusbar_coin/orange/0.png',
         'assets/img/7_statusbars/1_statusbar/1_statusbar_coin/orange/20.png',
@@ -13,6 +14,6 @@ class StatusbarCoins extends Statusbar {
     constructor() {
         super();
         this.loadImages(this.IMAGES);
-        this.setPercentage(100);
+        this.setPercentage(this.percentage);
     }
 }
