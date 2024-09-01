@@ -27,7 +27,7 @@ class World {
         setInterval(() => {
             this.checkCollisions();
             this.collectedCoins();
-            this.checkThrowObjects();
+            this.checkThrowBottles();
         }, 50);
     }
 
@@ -56,9 +56,10 @@ class World {
         })
     }
 
-    checkThrowObjects() {
+    checkThrowBottles() {
         if (this.keyboard.D) {
             let bottle = new Bottle(this.character.x + 100, this.character.y +100);
+            bottle.throw();
             this.bottles.push(bottle);
             this.character.idleTime = 0;
         }
@@ -80,6 +81,7 @@ class World {
         this.addObjectsToCanvas(this.level.enemies);
         this.addObjectsToCanvas(this.level.coins);
         this.addObjectsToCanvas(this.bottles);
+        this.addObjectsToCanvas(this.level.bottles);
         this.ctx.translate(-this.camera_x, 0);
 
         let self = this;

@@ -26,6 +26,13 @@ function initLevel() {
         new Coin(1400, 75),
         new Coin(1500, 100),
     ];
+    let bottles = [
+        new Bottle(200, 370),
+        new Bottle(225, 370),
+        new Bottle(300, 370),
+        new Bottle(400, 370),
+        new Bottle(500, 370),
+    ];
     let backgroundObjects = [
         new BackgroundObject('assets/img/5_background/layers/air.png', -719),
         new BackgroundObject('assets/img/5_background/layers/3_third_layer/2.png', -719),
@@ -53,5 +60,5 @@ function initLevel() {
         new BackgroundObject('assets/img/5_background/layers/1_first_layer/2.png', 719*3),        
     ];
     
-    level1 = new Level( enemies, clouds, coins, backgroundObjects);
+    level1 = new Level( enemies, clouds, coins, bottles, backgroundObjects);
 }
