@@ -27,11 +27,11 @@ function initLevel() {
         new Coin(1500, 100),
     ];
     let bottles = [
-        new Bottle(200, 370),
-        new Bottle(225, 370),
-        new Bottle(300, 370),
-        new Bottle(400, 370),
-        new Bottle(500, 370),
+        new Bottle('assets/img/6_salsa_bottle/1_salsa_bottle_on_ground.png', 200, 370),
+        new Bottle('assets/img/6_salsa_bottle/2_salsa_bottle_on_ground.png', 225, 370),
+        new Bottle('assets/img/6_salsa_bottle/1_salsa_bottle_on_ground.png', 300, 370),
+        new Bottle('assets/img/6_salsa_bottle/1_salsa_bottle_on_ground.png', 400, 370),
+        new Bottle('assets/img/6_salsa_bottle/2_salsa_bottle_on_ground.png', 500, 370),
     ];
     let backgroundObjects = [
         new BackgroundObject('assets/img/5_background/layers/air.png', -719),

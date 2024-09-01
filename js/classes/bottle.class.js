@@ -2,12 +2,14 @@ class Bottle extends MovableObject {
 
     width = 50;
     height = 60;
+    bottle_collected_sound = new Audio('assets/audio/bottle-collected.mp3');
 
-    constructor(x, y) {
+    constructor(imagePath, x, y) {
         super();
         this.x = x;
         this.y = y;
-        this.loadImage('assets/img/6_salsa_bottle/bottle_rotation/rotation_sequences.gif');
+        this.loadImage(imagePath);
+        this.bottle_collected_sound.volume = 0.25;
     }
 
     throw() {

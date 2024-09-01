@@ -8,6 +8,7 @@ class World {
     statusbarHealth = new StatusbarHealth();
     statusbarCoins = new StatusbarCoins();
     statusbarBottles = new StatusbarBottles();
+    bottlesCollected = 0;
     bottles = [];
 
     constructor(canvas, keyboard) {
@@ -27,6 +28,7 @@ class World {
         setInterval(() => {
             this.checkCollisions();
             this.collectedCoins();
+            this.collectedBottles();
             this.checkThrowBottles();
         }, 50);
     }
@@ -56,11 +58,22 @@ class World {
         })
     }
 
+    collectedBottles() {
+        this.level.bottles.forEach((bottle, i) => {
+            if (this. character.isColliding(bottle)) {
+                this.level.bottles.splice(i, 1);
+                this.bottlesCollected++;
+                bottle.bottle_collected_sound.play();
+            }
+        })
+    }
+
     checkThrowBottles() {
-        if (this.keyboard.D) {
-            let bottle = new Bottle(this.character.x + 100, this.character.y +100);
+        if (this.keyboard.D && this.bottlesCollected > 0) {
+            let bottle = new Bottle('assets/img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png', this.character.x + 100, this.character.y +100);
             bottle.throw();
             this.bottles.push(bottle);
+            this.bottlesCollected -= 1;
             this.character.idleTime = 0;
         }
     }
