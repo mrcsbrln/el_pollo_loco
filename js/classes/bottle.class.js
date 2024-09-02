@@ -9,7 +9,7 @@ class Bottle extends MovableObject {
         this.x = x;
         this.y = y;
         this.loadImage(imagePath);
-        this.bottle_collected_sound.volume = 0.25;
+        this.bottle_collected_sound.volume = 0.15;
     }
 
     throw() {
