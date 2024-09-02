@@ -60,9 +60,10 @@ class World {
 
     collectedBottles() {
         this.level.bottles.forEach((bottle, i) => {
-            if (this. character.isColliding(bottle)) {
+            if (this.character.isColliding(bottle) && this.bottlesCollected < 5) {
                 this.level.bottles.splice(i, 1);
                 this.bottlesCollected++;
+                this.statusbarBottles.setPercentage(this.bottlesCollected * 20);
                 bottle.bottle_collected_sound.play();
             }
         })
@@ -74,6 +75,7 @@ class World {
             bottle.throw();
             this.bottles.push(bottle);
             this.bottlesCollected -= 1;
+            this.statusbarBottles.setPercentage(this.bottlesCollected * 21);
             this.character.idleTime = 0;
         }
     }

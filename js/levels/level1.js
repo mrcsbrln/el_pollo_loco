@@ -29,9 +29,11 @@ function initLevel() {
     let bottles = [
         new Bottle('assets/img/6_salsa_bottle/1_salsa_bottle_on_ground.png', 200, 370),
         new Bottle('assets/img/6_salsa_bottle/2_salsa_bottle_on_ground.png', 225, 370),
-        new Bottle('assets/img/6_salsa_bottle/1_salsa_bottle_on_ground.png', 300, 370),
-        new Bottle('assets/img/6_salsa_bottle/1_salsa_bottle_on_ground.png', 400, 370),
-        new Bottle('assets/img/6_salsa_bottle/2_salsa_bottle_on_ground.png', 500, 370),
+        new Bottle('assets/img/6_salsa_bottle/1_salsa_bottle_on_ground.png', 350, 370),
+        new Bottle('assets/img/6_salsa_bottle/1_salsa_bottle_on_ground.png', 425, 370),
+        new Bottle('assets/img/6_salsa_bottle/2_salsa_bottle_on_ground.png', 590, 370),
+        new Bottle('assets/img/6_salsa_bottle/1_salsa_bottle_on_ground.png', 600, 370),
+        new Bottle('assets/img/6_salsa_bottle/2_salsa_bottle_on_ground.png', 750, 370),
     ];
     let backgroundObjects = [
         new BackgroundObject('assets/img/5_background/layers/air.png', -719),
