@@ -8,7 +8,7 @@ class World {
     statusbarHealth = new StatusbarHealth();
     statusbarCoins = new StatusbarCoins();
     statusbarBottles = new StatusbarBottles();
-    bottlesCollected = 0;
+    coinsCollected = 0;
     bottles = [];
 
     constructor(canvas, keyboard) {
@@ -27,9 +27,8 @@ class World {
     run() {
         setInterval(() => {
             this.checkCollisions();
-            this.collectedCoins();
-            this.collectedBottles();
-            this.checkThrowBottles();
+            this.collectCoins();
+            this.collectBottles();
         }, 50);
     }
 
@@ -49,36 +48,47 @@ class World {
         });
     }
 
-    collectedCoins() {
+    collectCoins() {
         this.level.coins.forEach((coin, i) => {
-            if (this.character.isColliding(coin)) {
+            if (this.character.isColliding(coin) && this.coinsCollected <= 10) {
                 this.level.coins.splice(i, 1);
+                this.coinsCollected++;
+                this.statusbarCoins.setPercentage(this.coinsCollected * 10)
                 coin.coin_collected_sound.play();
             }
         })
     }
 
-    collectedBottles() {
+    collectBottles() {
         this.level.bottles.forEach((bottle, i) => {
-            if (this.character.isColliding(bottle) && this.bottlesCollected < 5) {
+            if (this.character.isColliding(bottle) && this.bottles.length < 5) {
                 this.level.bottles.splice(i, 1);
-                this.bottlesCollected++;
-                this.statusbarBottles.setPercentage(this.bottlesCollected * 20);
+                this.bottles.push(new ThrowableObject());
+                this.statusbarBottles.setPercentage(this.bottles.length * 20);
                 bottle.bottle_collected_sound.play();
             }
         })
     }
 
-    checkThrowBottles() {
-        if (this.keyboard.D && this.bottlesCollected > 0) {
-            let bottle = new Bottle('assets/img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png', this.character.x + 100, this.character.y +100);
-            bottle.throw();
-            this.bottles.push(bottle);
-            this.bottlesCollected -= 1;
-            this.statusbarBottles.setPercentage(this.bottlesCollected * 21);
-            this.character.idleTime = 0;
-        }
-    }
+    // checkThrowBottles() {
+    //     if (this.keyboard.D && this.bottles.length > 0) {
+    //         let bottle = new Bottle('assets/img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png', this.character.x + 100, this.character.y +100);
+    //         bottle.throw();
+    //         this.bottleHitsEnemy(bottle);
+    //         this.bottles.push(bottle);
+    //         this.statusbarBottles.setPercentage(this.bottles.length * 21);
+    //         this.character.idleTime = 0;
+    //     }
+    // }
+
+    // bottleHitsEnemy(bottle) {
+    //     this.level.enemies.forEach(enemy => {
+    //         if(bottle.isColliding(enemy)){
+    //             enemy.kill();
+    //         }
+    //     })
+    // }
+
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
@@ -95,7 +105,9 @@ class World {
         this.addToCanvas(this.character);
         this.addObjectsToCanvas(this.level.enemies);
         this.addObjectsToCanvas(this.level.coins);
-        this.addObjectsToCanvas(this.bottles);
+        if(false) {
+            this.addObjectsToCanvas(this.bottles);
+        }
         this.addObjectsToCanvas(this.level.bottles);
         this.ctx.translate(-this.camera_x, 0);
 

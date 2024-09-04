@@ -1,4 +1,4 @@
-class Bottle extends MovableObject {
+class Bottle extends DrawableObject {
 
     width = 50;
     height = 60;
@@ -10,13 +10,5 @@ class Bottle extends MovableObject {
         this.y = y;
         this.loadImage(imagePath);
         this.bottle_collected_sound.volume = 0.15;
-    }
-
-    throw() {
-        this.speedY = 30;
-        this.applyGravity();
-        setInterval(() => {
-            this.x += 10;
-        }, 25);
     }
 }
