@@ -1,4 +1,5 @@
 class World {
+
     character = new Character();
     level = level1;
     canvas;
@@ -9,6 +10,7 @@ class World {
     statusbarCoins = new StatusbarCoins();
     statusbarBottles = new StatusbarBottles();
     coinsCollected = 0;
+    bottlesCollected = 0;
     bottles = [];
 
     constructor(canvas, keyboard) {
@@ -21,7 +23,7 @@ class World {
     }
 
     setWorld() {
-        this.character.world = this; //Frage
+        this.character.world = this;
     }
 
     run() {
@@ -29,6 +31,7 @@ class World {
             this.checkCollisions();
             this.collectCoins();
             this.collectBottles();
+            this.throwCollectedBottles();
         }, 50);
     }
 
@@ -61,25 +64,24 @@ class World {
 
     collectBottles() {
         this.level.bottles.forEach((bottle, i) => {
-            if (this.character.isColliding(bottle) && this.bottles.length < 5) {
+            if (this.character.isColliding(bottle) && this.bottlesCollected < 5) {
+                this.bottlesCollected++;
                 this.level.bottles.splice(i, 1);
-                this.bottles.push(new ThrowableObject());
-                this.statusbarBottles.setPercentage(this.bottles.length * 20);
+                this.statusbarBottles.setPercentage(this.bottlesCollected * 20);
                 bottle.bottle_collected_sound.play();
             }
         })
     }
 
-    // checkThrowBottles() {
-    //     if (this.keyboard.D && this.bottles.length > 0) {
-    //         let bottle = new Bottle('assets/img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png', this.character.x + 100, this.character.y +100);
-    //         bottle.throw();
-    //         this.bottleHitsEnemy(bottle);
-    //         this.bottles.push(bottle);
-    //         this.statusbarBottles.setPercentage(this.bottles.length * 21);
-    //         this.character.idleTime = 0;
-    //     }
-    // }
+    throwCollectedBottles() {
+        if (this.keyboard.D && this.bottlesCollected > 0) {
+            let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
+            this.bottles.push(bottle);
+            this.statusbarBottles.setPercentage(this.bottlesCollected * 20 -1);
+            this.character.idleTime = 0;
+            this.bottlesCollected--;
+        }
+    }
 
     // bottleHitsEnemy(bottle) {
     //     this.level.enemies.forEach(enemy => {
@@ -97,17 +99,15 @@ class World {
         this.addObjectsToCanvas(this.level.clouds);
 
         this.ctx.translate(-this.camera_x, 0);
-        this.addToCanvas(this.statusbarHealth);
-        this.addToCanvas(this.statusbarCoins);
-        this.addToCanvas(this.statusbarBottles);
+        this.addObjectToCanvas(this.statusbarHealth);
+        this.addObjectToCanvas(this.statusbarCoins);
+        this.addObjectToCanvas(this.statusbarBottles);
         this.ctx.translate(this.camera_x, 0);
 
-        this.addToCanvas(this.character);
+        this.addObjectToCanvas(this.character);
         this.addObjectsToCanvas(this.level.enemies);
         this.addObjectsToCanvas(this.level.coins);
-        if(false) {
-            this.addObjectsToCanvas(this.bottles);
-        }
+        this.addObjectsToCanvas(this.bottles);
         this.addObjectsToCanvas(this.level.bottles);
         this.ctx.translate(-this.camera_x, 0);
 
@@ -118,7 +118,7 @@ class World {
     }
 
     flipImage(movableObject) {
-        this.ctx.save();  //Frage
+        this.ctx.save();
         this.ctx.translate(movableObject.width, 0);
         this.ctx.scale(-1, 1);
         movableObject.x = movableObject.x * -1
@@ -131,11 +131,11 @@ class World {
 
     addObjectsToCanvas(objects) {
         objects.forEach(object => {
-            this.addToCanvas(object);
+            this.addObjectToCanvas(object);
         });
     }
 
-    addToCanvas(object) {
+    addObjectToCanvas(object) {
         if (object.otherDirection) {
             this.flipImage(object);
         }
