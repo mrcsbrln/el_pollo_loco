@@ -32,6 +32,7 @@ class World {
             this.collectCoins();
             this.collectBottles();
             this.throwCollectedBottles();
+            this.bottleHitsEnemy();
         }, 50);
     }
 
@@ -83,14 +84,16 @@ class World {
         }
     }
 
-    // bottleHitsEnemy(bottle) {
-    //     this.level.enemies.forEach(enemy => {
-    //         if(bottle.isColliding(enemy)){
-    //             enemy.kill();
-    //         }
-    //     })
-    // }
-
+    bottleHitsEnemy() {
+        this.bottles.forEach(bottle => {
+            this.level.enemies.forEach(enemy => {
+                if(bottle.isColliding(enemy)) {
+                    enemy.kill();
+                    bottle.bottleHitsEnemy = true;
+                }
+            })
+        })     
+    }
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
