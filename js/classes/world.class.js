@@ -33,23 +33,38 @@ class World {
             this.collectBottles();
             this.throwCollectedBottles();
             this.bottleHitsEnemy();
+            this.initiateEndbossAttack();
+            this.spliceDeadChicken();
         }, 50);
     }
 
     checkCollisions() {
-        this.level.enemies.forEach((enemy, i) => {
+        this.level.enemies.forEach(enemy => {
             if (this.character.isColliding(enemy)) {
-                if (this.character.isAboveGround()) {
-                    enemy.kill();
-                } else if (enemy.dead === false) {
-                    this.character.hit();
-                    this.statusbarHealth.setPercentage(this.character.energy);
-                }
+                this.handleCollisions(enemy);
             }
-            if (enemy.splicable === true) {
+        });
+    }
+
+    spliceDeadChicken() {
+        this.level.enemies.forEach((enemy, i) => {
+            if (enemy.splicable) {
                 this.level.enemies.splice(i, 1);
             }
         });
+    }
+
+    handleCollisions(enemy) {
+        if (this.character.isAboveGround() && !(this instanceof Endboss)) {
+            enemy.kill();
+        } else if (!enemy.dead) {
+            this.hitCharater();
+        }
+    }
+
+    hitCharater() {
+        this.character.hit();
+        this.statusbarHealth.setPercentage(this.character.energy);
     }
 
     collectCoins() {
@@ -93,6 +108,13 @@ class World {
                 }
             })
         })     
+    }
+    
+    initiateEndbossAttack() {
+        if(this.character.x > 1800) {
+            let endboss = this.level.enemies[this.level.enemies.length -1];
+            endboss.endbossAttacks();
+        }
     }
 
     draw() {

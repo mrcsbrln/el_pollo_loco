@@ -1,4 +1,6 @@
 let isDead = false;
+const soundTrack = new Audio('assets/audio/el-pollo-loco.mp3');
+soundTrack.volume = 0.15;
 
 function startGame() {
     initLevel();
@@ -7,6 +9,7 @@ function startGame() {
     document.getElementById('intro-outro-screens').style.display = 'none';
     document.getElementById('canvas-div').style.display = 'block';
     document.getElementById('play-btn').style.zIndex = '-1';
+    soundTrack.play();
 }
 
 function gameOver() {
