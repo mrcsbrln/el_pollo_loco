@@ -11,6 +11,7 @@ class World {
     statusbarBottles = new StatusbarBottles();
     coinsCollected = 0;
     bottlesCollected = 0;
+    bottlesHitEndboss = 0;
     bottles = [];
 
     constructor(canvas, keyboard) {
@@ -109,14 +110,20 @@ class World {
             })
         })     
     }
+
+    bottlesHitsEndboss() {}
     
     initiateEndbossAttack() {
         let endboss = this.level.enemies[this.level.enemies.length -1];
         if(this.character.x >= 1800) {
-            endboss.endbossAttackInitiated = true;
+            endboss.endbossStartsWalking = true;
         }
-        if(endboss.endbossAttackInitiated) {
-            endboss.endbossAttacks();
+        if(endboss.endbossStartsWalking || endboss.endbossIsAttacking) {
+            endboss.moveLeft();
+        }
+        if((endboss.x - this.character.x) < 350) {
+            endboss.endbossIsAttacking = true;
+            endboss.endbossStartsWalking = false;
         }
     }
 
