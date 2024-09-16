@@ -111,8 +111,11 @@ class World {
     }
     
     initiateEndbossAttack() {
-        if(this.character.x > 1800) {
-            let endboss = this.level.enemies[this.level.enemies.length -1];
+        let endboss = this.level.enemies[this.level.enemies.length -1];
+        if(this.character.x >= 1800) {
+            endboss.endbossAttackInitiated = true;
+        }
+        if(endboss.endbossAttackInitiated) {
             endboss.endbossAttacks();
         }
     }
