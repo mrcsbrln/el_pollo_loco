@@ -55,7 +55,7 @@ class World {
     }
 
     handleCollisions(enemy) {
-        if (this.character.isAboveGround() && !(this instanceof Endboss)) {
+        if (this.character.isAboveGround() && !(enemy instanceof Endboss)) {
             enemy.kill();
         } else if (!enemy.dead) {
             this.hitCharater();
@@ -102,7 +102,7 @@ class World {
     bottleHitsEnemy() {
         this.bottles.forEach(bottle => {
             this.level.enemies.forEach(enemy => {
-                if(bottle.isColliding(enemy)) {
+                if(bottle.isColliding(enemy) && !(enemy instanceof Endboss)) {
                     enemy.kill();
                     bottle.bottleHitsEnemy = true;
                 }
