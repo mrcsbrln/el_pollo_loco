@@ -1,6 +1,7 @@
 let isDead = false;
 const soundTrack = new Audio('assets/audio/el-pollo-loco.mp3');
 soundTrack.volume = 0.15;
+soundTrack.loop = true;
 
 function startGame() {
     initLevel();
