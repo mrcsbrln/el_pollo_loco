@@ -1,4 +1,3 @@
-let isDead = false;
 const soundTrack = new Audio('assets/audio/el-pollo-loco.mp3');
 soundTrack.volume = 0.15;
 soundTrack.loop = true;
@@ -14,7 +13,7 @@ function startGame() {
 }
 
 function gameOver() {
-    if (isDead) {
+    if (world.character.isDead()) {
         document.getElementById('intro-outro-screens').style.backgroundImage = "url('assets/img/9_intro_outro_screens/game_over/game over.png')";
         document.getElementById('intro-outro-screens').style.display = 'block';
         document.getElementById('canvas-div').style.display = 'none';

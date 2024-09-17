@@ -12,7 +12,7 @@ class Character extends MovableObject {
     };
     speed = 8;
     idleTime = 0;
-    energy = 1000;
+    energy = 100;
     IMAGES_WALKING = [
         'assets/img/2_character_pepe/2_walk/W-21.png',
         'assets/img/2_character_pepe/2_walk/W-22.png',
