@@ -8,7 +8,7 @@ class Chick extends Chicken {
         'assets/img/3_enemies_chicken/chicken_small/1_walk/3_w.png',
     ];
     IMAGE_DEAD = 'assets/img/3_enemies_chicken/chicken_small/2_dead/dead.png';
-    chicken_dead_sound = new Audio('assets/audio/chick-dead.mov');
+    chicken_hurt_sound = new Audio('assets/audio/chick-dead.mov');
 
     constructor() {
         super();
@@ -17,6 +17,6 @@ class Chick extends Chicken {
         this.x = 200 + Math.random() * 1800;
         this.speed = 0.15 + Math.random() * 0.5;
         this.animate();
-        this.chicken_dead_sound.volume = 0.25;
+        this.chicken_hurt_sound.volume = 0.25;
     }
 }

@@ -2,7 +2,6 @@ class World {
 
     character = new Character();
     level = level1;
-    endboss = 
     canvas;
     ctx;
     keyboard;
@@ -13,6 +12,7 @@ class World {
     coinsCollected = 0;
     bottlesCollected = 0;
     bottles = [];
+    throwTimeout = false;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -36,7 +36,6 @@ class World {
             this.bottleHitsEnemy();
             this.initiateEndbossAttack();
             this.spliceDeadChicken();
-            console.log(this.level.enemies[this.level.enemies.length -1].isDead());
         }, 50);
     }
 
@@ -92,13 +91,21 @@ class World {
     }
 
     throwCollectedBottles() {
-        if (this.keyboard.D && this.bottlesCollected > 0) {
+        console.log(this.throwTimeout);
+        if (this.keyboard.D && this.bottlesCollected > 0 && !this.throwTimeout) {
+            this.throwTimeout = true;
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.bottles.push(bottle);
             this.statusbarBottles.setPercentage(this.bottlesCollected * 20 -1);
             this.character.idleTime = 0;
             this.bottlesCollected--;
+            setTimeout(()=> {
+                this.throwTimeout = false;
+            }, 1000);
         }
+    }
+
+    resetThrowTimeout() {
     }
 
     bottleHitsEnemy() {
@@ -111,7 +118,9 @@ class World {
                 }
                 if (bottle.isColliding(enemy) && (enemy instanceof Endboss)) {
                     endboss.hit();
-                    console.log(endboss.energy);
+                    endboss.bottleIsColliding = true;
+                } else {
+                    endboss.bottleIsColliding = false;
                 }
             })
         })     

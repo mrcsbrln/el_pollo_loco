@@ -1,11 +1,14 @@
 class Endboss extends MovableObject {
 
+    bottleIsColliding = false;
     height = 300;
     width = 200;
     y = 150;
     endbossStartsWalking = false;
     endbossIsAttacking = false;
     speed = 4;
+    endboss_hurt_sound = new Audio('assets/audio/chicken-dead.mov');
+    endBossDeadSoundPlayed = false;
 
     IMAGES_ENDBOSS_ALERT = [
         'assets/img/4_enemie_boss_chicken/2_alert/G5.png',
@@ -54,6 +57,7 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_ENDBOSS_ALERT);
         this.loadImages(this.IMAGES_BOSS_WALKGING);
         this.loadImages(this.IMAGES_BOSS_ATTACK);
+        this.loadImages(this.IMAGES_BOSS_HURT);
         this.loadImages(this.IMAGES_BOSS_DEAD);
         this.x = 2400;
         this.animate();
@@ -61,15 +65,25 @@ class Endboss extends MovableObject {
 
     animate() {
         setInterval(() => {
-            if (this.endbossStartsWalking && !this.isDead()) {
+            if (this.endbossStartsWalking && !this.isDead() && !this.bottleIsColliding) {
                 this.playAnimation(this.IMAGES_BOSS_WALKGING);
                 this.moveLeft();
-            } else if (this.endbossIsAttacking && !this.isDead()) {
+                this.speed = 4;
+            } else if (this.endbossIsAttacking && !this.isDead() && !this.bottleIsColliding) {
                 this.playAnimation(this.IMAGES_BOSS_ATTACK);
+                this.moveLeft();
+                this.speed = 16;
+            } else if (this.bottleIsColliding && !this.isDead()) {
+                this.playAnimation(this.IMAGES_BOSS_HURT);
+                this.endboss_hurt_sound.play();
             } else if (this.isDead()) {
                 this.playAnimation(this.IMAGES_BOSS_DEAD);
                 this.speed = 0;
                 this.y += 50;
+                if(!this.endBossDeadSoundPlayed) {
+                    this.endboss_hurt_sound.play();
+                }
+                this.endBossDeadSoundPlayed = true;
             } else {
                 this.playAnimation(this.IMAGES_ENDBOSS_ALERT);
             }

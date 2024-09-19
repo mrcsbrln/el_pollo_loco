@@ -16,8 +16,8 @@ class Chicken extends MovableObject {
         'assets/img/3_enemies_chicken/chicken_normal/1_walk/3_w.png',
     ];
     IMAGE_DEAD = 'assets/img/3_enemies_chicken/chicken_normal/2_dead/dead.png';
-    chicken_dead_sound = new Audio('assets/audio/chicken-dead.mov');
-    chickenDeadSoundPlayed = false;
+    chicken_hurt_sound = new Audio('assets/audio/chicken-dead.mov');
+    chickenHurtSoundPlayed = false;
 
     constructor() {
         super();
@@ -31,9 +31,9 @@ class Chicken extends MovableObject {
     kill() {
         this.dead = true;
         this.speed = 0;
-        if (this.chickenDeadSoundPlayed === false) {
-            this.chicken_dead_sound.play();
-            this.chickenDeadSoundPlayed = true;
+        if (this.chickenHurtSoundPlayed === false) {
+            this.chicken_hurt_sound.play();
+            this.chickenHurtSoundPlayed = true;
         }
         setTimeout(() => {
             this.splicable = true;

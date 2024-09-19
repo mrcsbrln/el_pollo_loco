@@ -10,6 +10,9 @@ function startGame() {
     document.getElementById('canvas-div').style.display = 'block';
     document.getElementById('play-btn').style.zIndex = '-1';
     soundTrack.play();
+    setInterval(() => {
+        gameOver();
+    }, 50);
 }
 
 function gameOver() {
@@ -17,9 +20,8 @@ function gameOver() {
         document.getElementById('intro-outro-screens').style.backgroundImage = "url('assets/img/9_intro_outro_screens/game_over/game over.png')";
         document.getElementById('intro-outro-screens').style.display = 'block';
         document.getElementById('canvas-div').style.display = 'none';
+        document.getElementById('play-btn').disabled = false;
+        document.getElementById('play-btn').style.zIndex = '2';
+        soundTrack.pause();
     };
 }
-
-setInterval(() => {
-    gameOver();
-}, 50);
