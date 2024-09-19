@@ -6,7 +6,7 @@ class Endboss extends MovableObject {
     y = 150;
     endbossStartsWalking = false;
     endbossIsAttacking = false;
-    speed = 4;
+    speed = 0;
     endboss_hurt_sound = new Audio('assets/audio/chicken-dead.mov');
     endBossDeadSoundPlayed = false;
 
@@ -65,6 +65,7 @@ class Endboss extends MovableObject {
 
     animate() {
         setInterval(() => {
+            console.log(this.endbossStartsWalking);
             if (this.endbossStartsWalking && !this.isDead() && !this.bottleIsColliding) {
                 this.playAnimation(this.IMAGES_BOSS_WALKGING);
                 this.moveLeft();

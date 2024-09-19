@@ -91,7 +91,6 @@ class World {
     }
 
     throwCollectedBottles() {
-        console.log(this.throwTimeout);
         if (this.keyboard.D && this.bottlesCollected > 0 && !this.throwTimeout) {
             this.throwTimeout = true;
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
@@ -103,9 +102,6 @@ class World {
                 this.throwTimeout = false;
             }, 1000);
         }
-    }
-
-    resetThrowTimeout() {
     }
 
     bottleHitsEnemy() {
@@ -135,7 +131,7 @@ class World {
             endboss.endbossIsAttacking = true;
             endboss.endbossStartsWalking = false;
         }
-        if((endboss.x - this.character.x) > 250) {
+        if((endboss.x - this.character.x) > 250 && (endboss.x - this.character.x) < 500) {
             endboss.endbossIsAttacking = false;
             endboss.endbossStartsWalking = true;
         }
