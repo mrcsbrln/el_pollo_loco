@@ -25,6 +25,10 @@
     background-position: center;
 }
 
+.canvas-div{
+    position: relative;
+}
+
 .overlay {
     position: absolute;
     top: 0;
@@ -47,9 +51,11 @@ h1 {
 .intro-outro-screens {
     background-image: url('assets/img/9_intro_outro_screens/start/startscreen_1.png');
     border-radius: 4px;
-    width: 720px;
-    height: 480px;
-    background-size: 100% 100%;
+    width: 100%;
+    height: 100vh;
+    max-width: 720px;
+    max-height: 480px;
+    background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
     z-index: 2;
@@ -68,9 +74,47 @@ h1 {
     font-size: 20px;
     font-weight: bold;
     z-index: 2;
+    margin-top: 64px;
 }
 
 .play-btn:hover {
+    border-color: #FF9601;
+    background-color: #FEDD03;
+}
+
+.mobile-btns {
+    position: absolute;
+    bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 720px;
+    gap: 16px;
+    padding: 16px;
+}
+
+.btns-leftside, .btns-rightside {
+    display: flex;
+    gap: 16px;
+}
+
+.mobile-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+    font-size: 48px;
+    border-style: solid;
+    border-color: #FEDD03;
+    background-color: #FF9601;
+    border-radius: 50%;
+    z-index: 2;
+    cursor: pointer;
+}
+
+.mobile-btn:hover{
     border-color: #FF9601;
     background-color: #FEDD03;
 }
@@ -81,7 +125,6 @@ h1 {
 }
 
 canvas {
-    display: none;
     background: black;
     display: block;
     border-radius: 4px;

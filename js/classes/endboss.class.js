@@ -65,7 +65,6 @@ class Endboss extends MovableObject {
 
     animate() {
         setInterval(() => {
-            console.log(this.endbossStartsWalking);
             if (this.endbossStartsWalking && !this.isDead() && !this.bottleIsColliding) {
                 this.playAnimation(this.IMAGES_BOSS_WALKGING);
                 this.moveLeft();

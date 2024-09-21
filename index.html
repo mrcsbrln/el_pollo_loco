@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/x-icon" href='assets/img/mexican-hat.png'>
+    <link rel="icon" type="image/x-icon" href="assets/img/mexican-hat.png">
     <title>El Pollo Loco</title>
 </head>
 <body>
@@ -12,10 +12,28 @@
         <h1>El pollo loco</h1>
         <div id="canvas-div" class="canvas-div">
             <canvas id="canvas" width="720" height="480"></canvas>
+            <div class="mobile-btns">
+                <div class="btns-leftside">
+                    <span id="btn-left" class="mobile-btn">
+                        <img src="assets/img/arrow-left-solid.svg" alt="">
+                    </span>
+                    <span id="btn-right"class="mobile-btn">
+                        <img src="assets/img/arrow-right-solid.svg" alt="">
+                    </span>
+                </div>
+                <div class="btns-rightside">
+                    <span id="btn-jump" class="mobile-btn">
+                        <img src="assets/img/arrow-turn-up-solid.svg" alt="">
+                    </span>
+                    <span id="btn-throw"class="mobile-btn">
+                        <img src="assets/img/bottle-solid.svg" alt="">
+                    </span>
+                </div>
+            </div>
         </div>
         <div id="intro-outro-screens" class="intro-outro-screens">
+            <button id="play-btn" class="play-btn" onclick="startGame()">Play</button>
         </div>
-        <button id="play-btn" class="play-btn" onclick="startGame()">Play</button>
     </div>
     <div class="overlay"></div>
     <script src="js/classes/drawable-object.class.js" defer></script>
