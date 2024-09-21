@@ -9,6 +9,7 @@ class World {
     statusbarHealth = new StatusbarHealth();
     statusbarCoins = new StatusbarCoins();
     statusbarBottles = new StatusbarBottles();
+    statusbarEndboss = new StatusbarEndboss();
     coinsCollected = 0;
     bottlesCollected = 0;
     bottles = [];
@@ -114,6 +115,7 @@ class World {
                 }
                 if (bottle.isColliding(enemy) && (enemy instanceof Endboss)) {
                     endboss.hit();
+                    this.statusbarEndboss.setPercentage(endboss.energy);
                     endboss.bottleIsColliding = true;
                 } else {
                     endboss.bottleIsColliding = false;
@@ -147,6 +149,7 @@ class World {
         this.addObjectToCanvas(this.statusbarHealth);
         this.addObjectToCanvas(this.statusbarCoins);
         this.addObjectToCanvas(this.statusbarBottles);
+        this.addObjectToCanvas(this.statusbarEndboss);
         this.ctx.translate(this.camera_x, 0);
 
         this.addObjectToCanvas(this.character);
