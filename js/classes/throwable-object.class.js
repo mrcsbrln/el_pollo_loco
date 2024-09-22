@@ -40,8 +40,10 @@ class ThrowableObject extends MovableObject {
 
     animate() {
         setInterval(() => {
-            if (this.bottleHitEnemy && this.isAboveGround()) {
+            if (this.bottleHitEnemy) {
                 this.playAnimation(this.IMAGES_BOTTLE_SPLASH);
+                this.speedY = 0;
+                this.speed = 0;
             } else {
                 this.playAnimation(this.IMAGES_BOTTLE);
             }
