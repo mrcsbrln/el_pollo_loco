@@ -64,15 +64,15 @@ class Endboss extends MovableObject {
     }
 
     animate() {
-        setInterval(() => {
+        setStoppableInterval(() => {
             if (this.endbossStartsWalking && !this.isDead() && !this.bottleIsColliding) {
                 this.playAnimation(this.IMAGES_BOSS_WALKGING);
                 this.moveLeft();
-                this.speed = 4;
+                this.speed = 8;
             } else if (this.endbossIsAttacking && !this.isDead() && !this.bottleIsColliding) {
                 this.playAnimation(this.IMAGES_BOSS_ATTACK);
                 this.moveLeft();
-                this.speed = 16;
+                this.speed = 24;
             } else if (this.bottleIsColliding && !this.isDead()) {
                 this.playAnimation(this.IMAGES_BOSS_HURT);
                 this.endboss_hurt_sound.play();

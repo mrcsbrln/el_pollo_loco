@@ -82,6 +82,15 @@ h1 {
     background-color: #FEDD03;
 }
 
+.option-btns {
+    position: absolute;
+    top: 16px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 16px;
+}
+
 .mobile-btns {
     position: absolute;
     bottom: 16px;

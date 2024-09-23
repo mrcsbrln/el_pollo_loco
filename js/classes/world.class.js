@@ -6,6 +6,7 @@ class World {
     ctx;
     keyboard;
     camera_x = 0;
+    runIntervall;
     statusbarHealth = new StatusbarHealth();
     statusbarCoins = new StatusbarCoins();
     statusbarBottles = new StatusbarBottles();
@@ -29,7 +30,7 @@ class World {
     }
 
     run() {
-        setInterval(() => {
+        this.runIntervall = setStoppableInterval(() => {
             this.checkCollisions();
             this.collectCoins();
             this.collectBottles();
@@ -129,11 +130,11 @@ class World {
         if(this.character.x >= 1800) {
             endboss.endbossStartsWalking = true;
         }
-        if((endboss.x - this.character.x) < 250) {
+        if((endboss.x - this.character.x) < 400) {
             endboss.endbossIsAttacking = true;
             endboss.endbossStartsWalking = false;
         }
-        if((endboss.x - this.character.x) > 250 && (endboss.x - this.character.x) < 500) {
+        if((endboss.x - this.character.x) > 400 && (endboss.x - this.character.x) < 500) {
             endboss.endbossIsAttacking = false;
             endboss.endbossStartsWalking = true;
         }
