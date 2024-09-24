@@ -12,6 +12,10 @@ gameOverSoundPlayed = false;
 function startGame() {
     initLevel();
     init();
+    isMuted = false;
+    soundTrack.currentTime = 0;
+    gameOverSound.currentTime = 0;
+    winLevelSound.currentTime = 0;
     document.getElementById('play-btn').disabled = true;
     document.getElementById('intro-outro-screens').style.display = 'none';
     document.getElementById('canvas-div').style.display = 'block';
@@ -49,8 +53,19 @@ function gameOver() {
 function toggleMute() {
     isMuted = !isMuted;
     soundTrack.muted = isMuted;
+    gameOverSound.muted = isMuted;
+    winLevelSound.muted = isMuted;
+    world.level.bottles.forEach(bottle => {
+        bottle.bottle_collected_sound.muted = isMuted;
+    });
+    world.character.walking_sound.muted = isMuted;
+    world.character.jumping_sound = isMuted;
+    world.character.snoring_sound = isMuted;
+    world.character.hurt_sounds.forEach(sound => {
+        sound.muted = isMuted;
+    });
+
     const imgElement = document.querySelector('#btn-mute img');
-    console.log(isMuted);
     if (isMuted) {
         imgElement.setAttribute("src", "assets/img/volume-xmark-solid.svg");
     } 

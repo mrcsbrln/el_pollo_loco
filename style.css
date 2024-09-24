@@ -85,10 +85,11 @@ h1 {
 .option-btns {
     position: absolute;
     top: 16px;
-    width: 100%;
+    right: 0;
+    width: 64px;
     display: flex;
-    justify-content: flex-end;
-    padding: 16px;
+    justify-content: flex-start;
+    z-index: 100;
 }
 
 .mobile-btns {

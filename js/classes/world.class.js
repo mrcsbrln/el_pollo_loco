@@ -15,6 +15,7 @@ class World {
     bottlesCollected = 0;
     bottles = [];
     throwTimeout = false;
+    endboss = this.level.enemies[this.level.enemies.length -1];
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -107,7 +108,7 @@ class World {
     }
 
     bottleHitsEnemy() {
-        let endboss = this.level.enemies[this.level.enemies.length -1];
+        // let endboss = this.level.enemies[this.level.enemies.length -1];
         this.bottles.forEach(bottle => {
             this.level.enemies.forEach(enemy => {
                 if(bottle.isColliding(enemy) && !(enemy instanceof Endboss)) {
@@ -115,28 +116,28 @@ class World {
                     bottle.bottleHitsEnemy = true;
                 }
                 if (bottle.isColliding(enemy) && (enemy instanceof Endboss)) {
-                    endboss.hit();
-                    this.statusbarEndboss.setPercentage(endboss.energy);
-                    endboss.bottleIsColliding = true;
+                    this.endboss.hit();
+                    this.statusbarEndboss.setPercentage(this.endboss.energy);
+                    this.endboss.bottleIsColliding = true;
                 } else {
-                    endboss.bottleIsColliding = false;
+                    this.endboss.bottleIsColliding = false;
                 }
             })
         })     
     }
     
     initiateEndbossAttack() {
-        let endboss = this.level.enemies[this.level.enemies.length -1];
+        // let endboss = this.level.enemies[this.level.enemies.length -1];
         if(this.character.x >= 1800) {
-            endboss.endbossStartsWalking = true;
+            this.endboss.endbossStartsWalking = true;
         }
-        if((endboss.x - this.character.x) < 400) {
-            endboss.endbossIsAttacking = true;
-            endboss.endbossStartsWalking = false;
+        if((this.endboss.x - this.character.x) < 400) {
+            this.endboss.endbossIsAttacking = true;
+            this.endboss.endbossStartsWalking = false;
         }
-        if((endboss.x - this.character.x) > 400 && (endboss.x - this.character.x) < 500) {
-            endboss.endbossIsAttacking = false;
-            endboss.endbossStartsWalking = true;
+        if((this.endboss.x - this.character.x) > 400 && (this.endboss.x - this.character.x) < 500) {
+            this.endboss.endbossIsAttacking = false;
+            this.endboss.endbossStartsWalking = true;
         }
     }
 
@@ -150,7 +151,9 @@ class World {
         this.addObjectToCanvas(this.statusbarHealth);
         this.addObjectToCanvas(this.statusbarCoins);
         this.addObjectToCanvas(this.statusbarBottles);
-        this.addObjectToCanvas(this.statusbarEndboss);
+        if (this.endboss.endbossStartsWalking || this.endboss.endbossIsAttacking) {
+            this.addObjectToCanvas(this.statusbarEndboss); 
+        }
         this.ctx.translate(this.camera_x, 0);
 
         this.addObjectToCanvas(this.character);
