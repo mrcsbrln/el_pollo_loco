@@ -12,19 +12,20 @@ gameOverSoundPlayed = false;
 function startGame() {
     initLevel();
     init();
-    isMuted = false;
     soundTrack.currentTime = 0;
     gameOverSound.currentTime = 0;
     winLevelSound.currentTime = 0;
+    soundTrack.play();
+    gameOverSound.pause();
+    winLevelSound.pause();
     document.getElementById('play-btn').disabled = true;
     document.getElementById('intro-outro-screens').style.display = 'none';
     document.getElementById('canvas-div').style.display = 'block';
     document.getElementById('play-btn').style.zIndex = '-1';
-    gameOverSound.pause();
-    winLevelSound.pause();
-    soundTrack.play();
     setInterval(() => {
         gameOver();
+        console.log('isMuted:', isMuted);
+        muteUnmuteSounds();
     }, 50);
 }
 
@@ -46,21 +47,35 @@ function gameOver() {
             document.getElementById('play-btn').disabled = false;
             document.getElementById('play-btn').style.zIndex = '2';
             soundTrack.pause();
-        },1000)
+        }, 1000)
     };
 }
 
 function toggleMute() {
     isMuted = !isMuted;
+}
+
+function muteUnmuteSounds() {
     soundTrack.muted = isMuted;
     gameOverSound.muted = isMuted;
     winLevelSound.muted = isMuted;
     world.level.bottles.forEach(bottle => {
         bottle.bottle_collected_sound.muted = isMuted;
     });
+    world.level.coins.forEach(coin => {
+        coin.coin_collected_sound.muted = isMuted;
+    });
+    world.level.enemies.forEach(enemy => {
+        if (enemy instanceof Chicken || enemy instanceof Chick) {
+            enemy.chicken_hurt_sound.muted = isMuted;
+        }
+        else if (enemy instanceof Endboss) {
+            enemy.endboss_hurt_sound.muted = isMuted;
+        }
+    })
     world.character.walking_sound.muted = isMuted;
-    world.character.jumping_sound = isMuted;
-    world.character.snoring_sound = isMuted;
+    world.character.jumping_sound.muted = isMuted;
+    world.character.snoring_sound.muted = isMuted;
     world.character.hurt_sounds.forEach(sound => {
         sound.muted = isMuted;
     });

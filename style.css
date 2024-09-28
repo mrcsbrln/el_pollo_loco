@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'zabras';
-    src: url('assets/fonts/zabars.ttf') format('woff2'),
+    src: url('assets/fonts/zabars.ttf') format('woff2');
   }
 
 * {
@@ -164,7 +164,7 @@ canvas {
     margin-bottom: 20px;
 }
 
-@media only screen and (max-width: 720px) {
+@media only screen and (max-width: 932px) {
     canvas {
         width: 100%;
     }
@@ -174,7 +174,7 @@ canvas {
     }
 }
 
-@media only screen and (max-height: 480px) {
+@media only screen and (max-height: 430px) {
     canvas {
         height: 100vh;
     }
