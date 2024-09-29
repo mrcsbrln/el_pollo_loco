@@ -7,6 +7,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: sans-serif;
 }
 
 .d-none {
@@ -30,11 +31,11 @@
 }
 
 .overlay {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1;
 }
@@ -162,6 +163,44 @@ canvas {
     font-size: 24px;
     font-family: Arial, sans-serif;
     margin-bottom: 20px;
+}
+
+.impressum {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    color: #fff;
+    font-family: sans-serif;
+    z-index: 3;
+}
+
+.datenschutz {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    color: #fff;
+    font-family: sans-serif;
+    padding: 32px 64px;
+    z-index: 3;
+}
+
+.manual {
+    display: flex;
+    gap: 32px;
+    font-weight: bold;
+    font-size: 20px;
+    color: #FEDD03;
+    z-index: 3;
+}
+
+.footer {
+    display: flex;
+    gap: 32px;
+    z-index: 3;
+}
+
+.footer a {
+    color: #fff;
 }
 
 @media only screen and (max-width: 932px) {
