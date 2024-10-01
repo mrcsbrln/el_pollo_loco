@@ -8,7 +8,7 @@ class Chick extends Chicken {
      * The vertical position of the chick on the canvas.
      * @type {number}
      */
-    y = 385;
+    y = 395;
     
     /**
      * The height of the chick in pixels.

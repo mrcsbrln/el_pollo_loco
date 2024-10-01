@@ -144,32 +144,27 @@ class Endboss extends MovableObject {
     animate() {
         setStoppableInterval(() => {
             if (this.endbossStartsWalking && !this.isDead() && !this.bottleIsColliding) {
-                // End boss starts walking
                 this.playAnimation(this.IMAGES_BOSS_WALKGING);
                 this.moveLeft();
                 this.speed = 8;
             } else if (this.endbossIsAttacking && !this.isDead() && !this.bottleIsColliding) {
-                // End boss is attacking
                 this.playAnimation(this.IMAGES_BOSS_ATTACK);
                 this.moveLeft();
                 this.speed = 24;
             } else if (this.bottleIsColliding && !this.isDead()) {
-                // End boss is hurt due to collision with a bottle
                 this.playAnimation(this.IMAGES_BOSS_HURT);
                 this.endboss_hurt_sound.play();
             } else if (this.isDead()) {
-                // End boss is dead
                 this.playAnimation(this.IMAGES_BOSS_DEAD);
                 this.speed = 0;
-                this.y += 50; // Adjust y position to simulate falling or sinking
+                this.y += 50;
                 if (!this.endBossDeadSoundPlayed) {
                     this.endboss_hurt_sound.play();
                 }
                 this.endBossDeadSoundPlayed = true;
             } else {
-                // Default alert animation
                 this.playAnimation(this.IMAGES_ENDBOSS_ALERT);
             }
-        }, 100); // Checks and updates every 100 milliseconds
+        }, 100);
     }
 }

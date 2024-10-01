@@ -8,7 +8,7 @@ class Chicken extends MovableObject {
      * The vertical position of the chicken on the canvas.
      * @type {number}
      */
-    y = 370;
+    y = 385;
     
     /**
      * The height of the chicken in pixels.

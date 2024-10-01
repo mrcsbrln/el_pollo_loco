@@ -76,7 +76,7 @@ class Character extends MovableObject {
      * @type {string[]}
      */
     IMAGES_JUMPING = [
-        'assets/img/2_character_pepe/3_jump/J-31.png',
+        // 'assets/img/2_character_pepe/3_jump/J-31.png',
         'assets/img/2_character_pepe/3_jump/J-32.png',
         'assets/img/2_character_pepe/3_jump/J-33.png',
         'assets/img/2_character_pepe/3_jump/J-34.png',
@@ -301,10 +301,6 @@ class Character extends MovableObject {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
                 this.idleTime = 0;
-            }
-            if (this.isAboveGround()) {
-                this.playAnimation(this.IMAGES_JUMPING);
-                this.idleTime = 0;
             } 
             if (!this.isHurt()) {
                 this.hurtSoundPlayed = false;
@@ -313,6 +309,16 @@ class Character extends MovableObject {
                 this.hurtCharcter();
             }
         }, 50);
+
+        /**
+         * Handles animation state changes based on the character's actions and states.
+         */
+        setStoppableInterval(() => {
+            if (this.isAboveGround()) {
+                this.playAnimation(this.IMAGES_JUMPING);
+                this.idleTime = 0;
+            } 
+        }, 80);
         
         /**
          * Manages the idle state based on the duration of inactivity.

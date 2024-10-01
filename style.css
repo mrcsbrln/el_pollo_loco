@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'zabras';
     src: url('assets/fonts/zabars.ttf') format('woff2');
-  }
+}
 
 * {
     margin: 0;
@@ -26,8 +26,22 @@
     background-position: center;
 }
 
+.legal-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    min-height: 100vh;
+    background-image: url('assets/img/el_pollo_retro.png');
+    background-size: cover;
+    background-position: center;
+}
+
 .canvas-div{
     position: relative;
+    display: none; /* Beibehalten, falls noch benötigt */
+    z-index: 2;
 }
 
 .overlay {
@@ -76,6 +90,7 @@ h1 {
     font-weight: bold;
     z-index: 2;
     margin-top: 64px;
+    cursor: pointer;
 }
 
 .play-btn:hover {
@@ -96,7 +111,7 @@ h1 {
 .mobile-btns {
     position: absolute;
     bottom: 16px;
-    display: none;
+    display: none; /* Standardmäßig versteckt */
     justify-content: space-between;
     align-items: center;
     width: 100%;
@@ -130,11 +145,6 @@ h1 {
     background-color: #FEDD03;
 }
 
-.canvas-div {
-    display: none;
-    z-index: 2;
-}
-
 canvas {
     background: black;
     display: block;
@@ -151,7 +161,7 @@ canvas {
     background-color: #000;
     color: #fff;
     z-index: 100;
-    display: none;
+    display: none; /* Standardmäßig versteckt */
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -168,6 +178,8 @@ canvas {
 .impressum {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    width: 100%;
     gap: 32px;
     color: #fff;
     font-family: sans-serif;
@@ -201,15 +213,53 @@ canvas {
 
 .footer a {
     color: #fff;
+    text-decoration: none;
 }
 
-@media only screen and (max-width: 932px) {
+/* Medienabfrage für Touch-Geräte */
+@media (pointer: coarse) and (hover: none) {
+    .mobile-btns {
+        display: flex;
+    }
+
     canvas {
         width: 100%;
     }
 
-    .mobile-btns {
+    .manual, .footer {
+        display: none;
+    }
+}
+
+@media (pointer: coarse) and (hover: none) and (orientation: portrait) and (max-aspect-ratio: 0.75/1) {
+    .rotate-message {
         display: flex;
+    }
+
+    .main-container {
+        display: none;
+    }
+}
+
+@media (pointer: coarse) and (hover: none) and (orientation: landscape), 
+       (pointer: coarse) and (hover: none) and (aspect-ratio: 1/1) {
+    .rotate-message {
+        display: none;
+    }
+
+    .main-container {
+        display: flex;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    h1 {
+        font-size: 64px;
+    }
+
+    .manual {
+        font-size: 16px;
+        gap: 16px;
     }
 }
 
@@ -220,25 +270,5 @@ canvas {
 
     h1 {
         display: none;
-    }
-}
-
-@media only screen and (orientation: portrait) {
-    .rotate-message {
-        display: flex;
-    }
-
-    .main-container {
-        display: none;
-    }
-}
-
-@media only screen and (orientation: landscape) {
-    .rotate-message {
-        display: none;
-    }
-
-    .main-container {
-        display: flex;
     }
 }

@@ -112,6 +112,7 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
+        this.run2();
     }
 
     /**
@@ -135,7 +136,6 @@ class World {
      */
     run() {
         this.runIntervall = setStoppableInterval(() => {
-            this.checkCollisions();
             this.collectCoins();
             this.collectBottles();
             this.throwCollectedBottles();
@@ -144,6 +144,11 @@ class World {
             this.spliceDeadChicken();
             this.characterPassEndboss();
         }, 50);
+    }
+    run2() {
+        this.runIntervall = setStoppableInterval(() => {
+            this.checkCollisions();
+        }, 10);
     }
 
     /**
@@ -417,7 +422,7 @@ class World {
         }
 
         object.draw(this.ctx);
-        object.drawFrame(this.ctx);
+        // object.drawFrame(this.ctx);
 
         if (object.otherDirection) {
             this.flipImageBack(object);

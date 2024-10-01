@@ -46,6 +46,7 @@ winLevelSound.volume = 0.3;
  * - Sets up a recurring interval to check for game over conditions and manage sound muting.
  */
 function startGame() {
+    isMuted = loadFromLocalStorage('isMuted');
     initLevel();
     init();
     soundTrack.currentTime = 0;
@@ -58,9 +59,10 @@ function startGame() {
     document.getElementById('intro-outro-screens').style.display = 'none';
     document.getElementById('canvas-div').style.display = 'block';
     document.getElementById('play-btn').style.zIndex = '-1';
-    setInterval(() => {
+    setStoppableInterval(() => {
         gameOver();
         muteUnmuteSounds();
+        saveToLocalStorage('isMuted', isMuted);
     }, 50);
 }
 
@@ -156,4 +158,24 @@ function muteUnmuteSounds() {
     else {
         imgElement.setAttribute("src", "assets/img/volume-off-solid.svg");
     }
+}
+
+/**
+ * Saves a key-value pair to the browser's localStorage after serializing the value to JSON.
+ *
+ * @param {string} key - The key under which the value will be stored in localStorage.
+ * @param {*} value - The value to be stored, which will be converted to a JSON string.
+ */
+function saveToLocalStorage(key, value) {
+    localStorage.setItem(key, JSON.stringify(value));
+}
+
+/**
+ * Loads a value from the browser's localStorage by its key and deserializes it from JSON.
+ *
+ * @param {string} key - The key used to retrieve the value from localStorage.
+ * @returns {*} - The parsed value from localStorage, or `null` if the key does not exist.
+ */
+function loadFromLocalStorage(key) {
+    return JSON.parse(localStorage.getItem(key));
 }
